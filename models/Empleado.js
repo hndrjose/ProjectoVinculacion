@@ -13,21 +13,22 @@ var Schema = mongoose.Schema;
 // }
 
 var empleadoShema = new Schema({
-    Nombre_Empresa: { type: String, required: [true, 'El Nombre de la Empresa es requerido'] },
-    Fecha_Ing: { type: String, required: [true, 'La Fecha es Requerida'] },
-    Fecha: { type: String, required: [true, 'La Fecha es Requerida'] },
-    cedula: { type: Number, unique: true, required: [true, 'Cedula es nesesaria'] },
-    nombre: { type: String, required: [true, 'El nombre es nesesario'] },
+    nombreEmpresa: { type: String, required: [false, 'El Nombre de la Empresa es requerido'] },
+    fechaing: { type: String, required: [false, 'La Fecha es Requerida'] },
+    fecha: { type: String, required: [false, 'La Fecha es Requerida'] },
+    cedula: { type: Number, unique: true, required: [false, 'Cedula es nesesaria'] },
+    nombre: { type: String, required: [false, 'El nombre es nesesario'] },
+
     edad: { type: Number, required: [true, 'La edad es requerida'] },
-    Genero: { type: String, required: [true, 'El Genero es nesesario'] },
+    genero: { type: String, required: [true, 'El Genero es nesesario'] },
     img: { type: String, required: false },
-    F_Contract: { type: String, required: [false, 'El Fecha es nesesario'] },
-    Puesto_T: { type: String, required: [true, 'El Puesto es nesesario'] },
-    Turno: { type: String, required: [true, 'El Turno es nesesario'] },
-    N_Horas: { type: Number, required: [false, 'El Turno es nesesario'] },
-    N_Ruido_dba: { type: String, required: [true, 'El Dba es Requerido'] },
-    Prot_Audit: { type: String, required: [false, 'El Campo Procteccion es Requerido'] },
-    Molestias: { type: String, required: [true, 'Las molestias son Requeridas'] }
+    fcontract: { type: String, required: [false, 'El Fecha es nesesario'] },
+    puestot: { type: String, required: [true, 'El Puesto es nesesario'] },
+    turno: { type: String, required: [true, 'El Turno es nesesario'] },
+    nhora: { type: Number, required: [false, 'El Turno es nesesario'] },
+    nruidodba: { type: String, required: [true, 'El Dba es Requerido'] },
+    protaudit: { type: String, required: [false, 'El Campo Procteccion es Requerido'] },
+    molestias: { type: String, required: [true, 'Las molestias son Requeridas'] }
 
 
 });

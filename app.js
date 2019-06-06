@@ -43,15 +43,12 @@ var busquedaRutas = require('./routes/busqueda');
 var uploadRutas = require('./routes/upload');
 var imagenesRutas = require('./routes/imagenes');
 var loginRutas = require('./routes/login');
-var empleadoRutas = require('./routes/empleado')
-var ayerhoyRutas = require('./routes/ayerhoy')
-var durantevidaRutas = require('./routes/durantevida')
-var ultimomesesRutas = require('./routes/ultimomeses')
+var empleadoRuta = require('./routes/empleado')
 
 
 // Conexion a la base de datos
 // 'mongodb://localhost:27017/hospitaldb'
-mongoose.connection.openUri('mongodb://userjose:systemas123@ds153824.mlab.com:53824/hospitaldb', (err, res) => {
+mongoose.connection.openUri('mongodb://hndrjose:audiometria1@ds131747.mlab.com:31747/audiometria', (err, res) => {
     if (err) throw err;
 
     console.log('Base de Datos: \x1b[32m%s\x1b[0m', 'online');
@@ -59,10 +56,7 @@ mongoose.connection.openUri('mongodb://userjose:systemas123@ds153824.mlab.com:53
 
 
 // Rutas
-app.use('/ayerhoy', ayerhoyRutas);
-app.use('/durantevida', durantevidaRutas);
-app.use('/ultimomeses', ultimomesesRutas);
-app.use('/empleado', empleadoRutas);
+app.use('/empleado', empleadoRuta)
 app.use('/usuario', usuarioRutas);
 app.use('/hospital', hospitalRutas);
 app.use('/medico', medicoRutas);
