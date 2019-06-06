@@ -173,5 +173,40 @@ app.put('/:id', (req, res) => {
 // FIN DE ACTUALIZAR
 //========================================================================
 
+//========================================================================
+// INICIO DE ELIMIAR REGISTROS
+//========================================================================
+app.delete('/:id', (req, res) => {
+
+    var id = req.params.id;
+
+    DuranteVida.findByIdAndRemove(id, (err, borrarregistro) => {
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error al Borrar el Registro',
+                errors: err
+
+            });
+        }
+
+        if (!borrarregistro) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'No existe el Registro con ese Id',
+                errors: { message: 'El Registro no fue Encontrado' }
+
+            });
+        }
+        res.status(200).json({
+            ok: true,
+            registro: borrarregistro
+        });
+
+    });
+});
+//========================================================================
+// FIN DE ELIMINAR REGISTROS
+//========================================================================
 
 module.exports = app;
