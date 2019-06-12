@@ -43,6 +43,49 @@ app.get('/', (req, res, next) => {
 // ====================
 
 //========================================================================
+// OBTENER MEDICO POR ID
+//========================================================================
+app.get('/:id', (req, res) => {
+    var id = req.params.id;
+
+    Empleado.findById(id)
+        // .populate('usuario', 'id nombre email img')
+        // .populate('hospital')
+        .exec((err, empleado) => {
+
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    mensaje: 'Error Cargando Empleado',
+                    errors: err
+
+                });
+            }
+
+            if (!empleado) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'El Empleado con el id ' + cedula + 'no existe',
+                    errors: { message: 'No existe un empleado con ese ID' }
+
+                });
+            }
+
+            res.status(200).json({
+                ok: true,
+                empleados: empleado
+
+            });
+        });
+});
+// ====================================================================
+// FIN OBTENER MEDICO POR ID
+// ====================================================================
+
+
+
+
+//========================================================================
 // CREAR NUEVO EMPLEADOS
 // libreria de ayuda: buscar en google 'body parser node'
 // npm install body-parser
@@ -79,7 +122,7 @@ app.post('/', (req, res) => {
         }
         res.status(201).json({
             ok: true,
-            empleado: empleadoguardado,
+            empleado: empleadoguardado
 
         });
     });

@@ -1,25 +1,25 @@
 var express = require('express');
-var AyerHoy = require('../models/AyerHoy');
+var Empresa = require('../models/Empresa');
 var app = express();
 
 //========================================================================
-// OBTENER AYER_HOY
+// OBTENER EMPRESA
 //========================================================================
 app.get('/', (req, res, next) => {
 
     // var desde = req.query.desde || 0;
     // desde = Number(desde);
 
-    AyerHoy.find({})
+    Empresa.find({})
         // .skip(desde)
         // .limit(5)
         .exec(
-            (err, ayerhoy) => {
+            (err, empresa) => {
 
                 if (err) {
                     return res.status(500).json({
                         ok: false,
-                        mensaje: 'Error Cargando AyerHoy',
+                        mensaje: 'Error Cargando Empresa',
                         errors: err
 
                     });
@@ -28,7 +28,7 @@ app.get('/', (req, res, next) => {
                 // Usuario.countDocuments({}, (err, conteo) => {
                 res.status(200).json({
                     ok: true,
-                    ayerhoys: ayerhoy,
+                    empresas: empresa,
                     // total: conteo
                 });
                 // });
@@ -38,84 +38,77 @@ app.get('/', (req, res, next) => {
             });
 
 });
+// ====================================================================
+// FIN OBTENER EMPRESA
+// ====================
+
 //========================================================================
-// CREAR NUEVO AYER_HOY
+// CREAR NUEVO EMPRESA
 // libreria de ayuda: buscar en google 'body parser node'
 // npm install body-parser
 // libreria var bodyParser = require('body-parser')
 //========================================================================
 app.post('/', (req, res) => {
     var body = req.body;
-    var ayerhoy = new AyerHoy({
-        llego_moto: body.llego_moto,
-        llego_bus: body.llego_bus,
-        griparot: body.griparot,
-        ruido_f: body.ruido_f,
-        fiesta: body.fiesta,
-        otros: body.otros,
-        empleado: body.empleado
+    var empresa = new Empresa({
+        nombre: body.nombre
 
     });
 
-    ayerhoy.save((err, ayerhoyguardado) => {
+    empresa.save((err, empresaguardado) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Error Guardando AyerHoy',
+                mensaje: 'Error Guardando Empresa',
                 errors: err
             });
         }
         res.status(201).json({
             ok: true,
-            ayerhoy: ayerhoyguardado,
+            empresa: empresaguardado,
 
         });
     });
 });
 // ====================================================================
-// FIN CREAR NUEVOS AYER_HOY
+// FIN CREAR NUEVOS EMPRESA
 // ====================================================================
 
 //========================================================================
-// ACTUALIZAR AYER_HOY
+// ACTUALIZAR EMPRESA
 //========================================================================
 app.put('/:id', (req, res) => {
 
     var id = req.params.id;
     var body = req.body;
 
-    AyerHoy.findById(id, (err, ayerhoy) => {
+    Empresa.findById(id, (err, empresa) => {
 
         if (err) {
             return res.status(500).json({
                 ok: false,
-                mensaje: 'Error al buscar AyerHoy',
+                mensaje: 'Error al buscar empresa',
                 errors: err
 
             });
         }
-        if (!ayerhoy) {
+        if (!empresa) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'El Ayerhoy ' + id + ' no existe',
-                errors: { message: 'no existe el AyerHoy' }
+                mensaje: 'La empresa ' + id + ' no existe',
+                errors: { message: 'no existe la empresa' }
 
             });
         }
-        ayerhoy.llego_moto = body.llego_moto,
-            ayerhoy.llego_bus = body.llego_bus,
-            ayerhoy.griparot = body.griparot,
-            ayerhoy.ruido_f = body.ruido_f,
-            ayerhoy.fiesta = body.fiesta,
-            ayerhoy.otros = body.otros,
-            ayerhoy.empleado = body.empleado
+        empresa.nombre = body.nombre;
+       
 
-        ayerhoy.save((err, ayerhoyguardado) => {
+        empresa.save((err, empresaguardado) => {
 
             if (err) {
                 return res.status(400).json({
                     ok: false,
-                    mensaje: 'Error al actualizar el ayerhoy',
+                    mensaje: 'Error al actualizar la empresa',
                     errors: err
 
                 });
@@ -124,7 +117,7 @@ app.put('/:id', (req, res) => {
 
             res.status(200).json({
                 ok: true,
-                ayerhoy: ayerhoyguardado
+                empresa: empresaguardado
             });
 
         });
@@ -133,9 +126,7 @@ app.put('/:id', (req, res) => {
 
 });
 //========================================================================
-// FIN DE ACTUALIZAR AYER_HOY
+// FIN DE ACTUALIZAR EMPRESA
 //========================================================================
-// ====================================================================
-// FIN OBTENER AYER_HOY
-// ====================
+
 module.exports = app;

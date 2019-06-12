@@ -12,14 +12,14 @@ var Schema = mongoose.Schema;
 //     message: '{VALUE} no es un Rol permitido'
 // }
 
-var Ayer_HoyShema = new Schema({
-    Llego_Moto: { type: String, required: [false, 'Fiebre de la Empresa es requerido'] },
-    Llego_Bus: { type: String, required: [false, 'Consulta_Oidos es Requerida'] },
-    Gripa_R_Ot: { type: String, required: [false, 'Operacion_O es Requerida'] },
-    Ruido_F: { type: String, required: [false, 'Conciencia es nesesaria'] },
-    Fiesta: { type: String, required: [false, 'Paperas es nesesario'] },
-    Otros: { type: String, required: [false, 'Escarlatina es requerida'] },
-    Empleado: { type: Schema.Types.ObjectId, ref: 'Empleado' }
+var ayer_hoyShema = new Schema({
+    llego_moto: { type: String, required: [false, 'Fiebre de la Empresa es requerido'] },
+    llego_bus: { type: String, required: [false, 'Consulta_Oidos es Requerida'] },
+    griparot: { type: String, required: [false, 'Operacion_O es Requerida'] },
+    ruido_f: { type: String, required: [false, 'Conciencia es nesesaria'] },
+    fiesta: { type: String, required: [false, 'Paperas es nesesario'] },
+    otros: { type: String, required: [false, 'Escarlatina es requerida'] },
+    empleado: { type: Schema.Types.ObjectId, ref: 'Empleado' }
 
 
 });
@@ -27,4 +27,4 @@ var Ayer_HoyShema = new Schema({
 // para mandar la variable que se esta validandao se pone entre llaves {} la palabra PATH en mayuscula
 
 
-module.exports = mongoose.model('Ayer_Hoy', Ayer_HoyShema);
+module.exports = mongoose.model('Ayer_Hoy', ayer_hoyShema);

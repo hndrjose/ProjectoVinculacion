@@ -49,7 +49,9 @@ app.get('/', (req, res, next) => {
 // libreria var bodyParser = require('body-parser')
 //========================================================================
 app.post('/', (req, res) => {
+
     var body = req.body;
+
     var durantevida = new DuranteVida({
         fiebre: body.fiebre,
         consultaOidos: body.consultaOidos,
@@ -74,18 +76,18 @@ app.post('/', (req, res) => {
         usado_Q_E: body.usado_Q_E,
         quimicos_I: body.quimicos_I,
         trabajos_Ant: body.trabajos_Ant,
-        empleado: req.empleado.id
+        empleado: body.empleado
     });
 
     durantevida.save((err, durantevidaguardado) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Error Guardando durantevida',
+                mensaje: 'Error al crear durantevida',
                 errors: err
             });
         }
-        res.status(201).json({
+        res.status(200).json({
             ok: true,
             durantevida: durantevidaguardado,
 
@@ -114,7 +116,7 @@ app.put('/:id', (req, res) => {
 
             });
         }
-        if (durantevida) {
+        if (!empleadodurantevida) {
             return res.status(400).json({
                 ok: false,
                 mensaje: 'El Registro ' + id + ' no existe',
@@ -122,32 +124,32 @@ app.put('/:id', (req, res) => {
 
             });
         }
-        durantevida.fiebre = body.fiebre;
-        durantevida.consultaOidos = body.consultaOidos;
-        durantevida.operacionO = body.operacionO;
-        durantevida.concienci =: body.conciencia;
-        durantevida.paperas = body.paperas;
-        durantevida.escarlatina = body.escarlatina;
-        durantevida.sarampion = body.sarampion;
-        durantevida.meningitis = body.meningitis;
-        durantevida.diabetes = body.diabetes;
-        durantevida.riñon = body.riñon;
-        durantevida.alergias = body.alergias;
-        durantevida.instrumentos_M = body.instrumentos_M;
-        durantevida.sorderaFamilia = body.sorderaFamilia;
-        durantevida.sMilitar = body.sMilitar;
-        durantevida.casaMR = body.casaMR;
-        durantevida.musica = body.musica;
-        durantevida.pasatiempos = body.pasatiempos;
-        durantevida.cohetes = body.cohetes;
-        durantevida.armas = body.armas;
-        durantevida.usado_G_K = body.usado_G_K;
-        durantevida.usado_Q_E = body.usado_Q_E;
-        durantevida.quimicos_I = body.quimicos_I;
-        durantevida.trabajos_Ant = body.trabajos_Ant;
-        durantevida.empleado = req.empleado.id;
+        empleadodurantevida.fiebre = body.fiebre;
+        empleadodurantevida.consultaOidos = body.consultaOidos;
+        empleadodurantevida.operacionO = body.operacionO;
+        empleadodurantevida.concienci = body.conciencia;
+        empleadodurantevida.paperas = body.paperas;
+        empleadodurantevida.escarlatina = body.escarlatina;
+        empleadodurantevida.sarampion = body.sarampion;
+        empleadodurantevida.meningitis = body.meningitis;
+        empleadodurantevida.diabetes = body.diabetes;
+        empleadodurantevida.riñon = body.riñon;
+        empleadodurantevida.alergias = body.alergias;
+        empleadodurantevida.instrumentos_M = body.instrumentos_M;
+        empleadodurantevida.sorderaFamilia = body.sorderaFamilia;
+        empleadodurantevida.sMilitar = body.sMilitar;
+        empleadodurantevida.casaMR = body.casaMR;
+        empleadodurantevida.musica = body.musica;
+        empleadodurantevida.pasatiempos = body.pasatiempos;
+        empleadodurantevida.cohetes = body.cohetes;
+        empleadodurantevida.armas = body.armas;
+        empleadodurantevida.usado_G_K = body.usado_G_K;
+        empleadodurantevida.usado_Q_E = body.usado_Q_E;
+        empleadodurantevida.quimicos_I = body.quimicos_I;
+        empleadodurantevida.trabajos_Ant = body.trabajos_Ant;
+        empleadodurantevida.empleado = body.empleado;
 
-        durantevida.save((err, durantevidaguardado) => {
+        empleadodurantevida.save((err, durantevidaguardado) => {
 
             if (err) {
                 return res.status(400).json({
@@ -161,7 +163,7 @@ app.put('/:id', (req, res) => {
 
             res.status(200).json({
                 ok: true,
-                durantevida: durantevidaguardado
+                empleadodurantevida: durantevidaguardado
             });
 
         });

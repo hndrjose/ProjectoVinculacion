@@ -54,6 +54,7 @@ app.post('/', mdauntentic.verificatoken, (req, res) => {
         nombre: body.nombre,
         usuario: req.usuario._id,
         hospital: body.hospital
+
     });
 
     medico.save((err, medicoguardado) => {

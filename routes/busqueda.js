@@ -4,6 +4,7 @@ var app = express();
 var Hospital = require('../models/hospital');
 var Medico = require('../models/medico');
 var Usuario = require('../models/usuario');
+var Empleado = require('../models/Empleado');
 
 //==========================================
 // BUSQUEDA POR COLECCION
@@ -18,8 +19,8 @@ app.get('/coleccion/:tabla/:busqueda', (req, res) => {
     var promesa;
 
     switch (tabla) {
-        case 'usuarios':
-            promesa = busquedusuario(busqueda, regex);
+        case 'empleados':
+            promesa = busquedempleado(busqueda, regex);
             break;
 
         case 'hospitales':
@@ -33,7 +34,7 @@ app.get('/coleccion/:tabla/:busqueda', (req, res) => {
         default:
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Los tipos de busqueda solo son: usuario, medico y hospitales',
+                mensaje: tabla + ' --- Los tipos de busqueda solo son: usuario, medico y hospitales',
                 error: { message: 'paron de la busqueda no valido' }
             });
     }
@@ -62,15 +63,17 @@ app.get('/todo/:busqueda', (req, res, next) => {
 
     // esta es una Promesa mas optimisada donde resuvos las respuestas de las funciones de busqueda
     Promise.all([
-        busquedaHospital(busqueda, regex),
-        busquedamedico(busqueda, regex),
-        busquedusuario(busqueda, regex)
+        // busquedaHospital(busqueda, regex),
+        // busquedamedico(busqueda, regex),
+        // busquedusuario(busqueda, regex),
+        busquedempleado(busqueda, regex)
     ]).then(respuestas => {
         res.status(200).json({
             ok: true,
-            hospitales: respuestas[0],
-            medico: respuestas[1],
-            usuario: respuestas[2]
+            // hospitales: respuestas[0],
+            // medico: respuestas[1],
+            // usuario: respuestas[2],
+            empleado: respuestas[0]
         });
     });
 
@@ -146,5 +149,26 @@ function busquedusuario(busqueda, regex) {
 
     });
 }
+
+function busquedempleado(busqueda, regex) {
+
+    return new Promise((resolve, reject) => {
+
+        Empleado.find({}, 'nombre edad')
+            .or([{ 'nombre': regex }, { 'cedula': regex }])
+            .exec((err, empleado) => {
+
+                if (err) {
+                    reject('Error al cargar empleado', err);
+                } else {
+                    resolve(empleado);
+                }
+
+            });
+
+    });
+}
+
+
 
 module.exports = app;

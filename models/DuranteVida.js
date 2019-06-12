@@ -12,7 +12,7 @@ var Schema = mongoose.Schema;
 //     message: '{VALUE} no es un Rol permitido'
 // }
 
-var Durante_VidaShema = new Schema({
+var durante_vidaShema = new Schema({
     fiebre: { type: String, required: [false, 'Fiebre de la Empresa es requerido'] },
     consultaOidos: { type: String, required: [false, 'Consulta_Oidos es Requerida'] },
     operacionO: { type: String, required: [false, 'Operacion_O es Requerida'] },
@@ -36,12 +36,11 @@ var Durante_VidaShema = new Schema({
     usado_Q_E: { type: String, required: [false, 'Usado_Q_E es nesesario'] },
     quimicos_I: { type: String, required: [false, 'Quimicos_Ies nesesario'] },
     trabajos_Ant: { type: String, required: [false, 'Trabajos_Antes nesesario'] },
-    empleado: { type: Schema.Types.ObjectId, ref: 'Empleado' }
-
-
+    empleado: { type: Schema.Types.ObjectId, ref: 'Empleado'}
+    
 });
 
 // para mandar la variable que se esta validandao se pone entre llaves {} la palabra PATH en mayuscula
 
 
-module.exports = mongoose.model('Durante_Vida', Durante_VidaShema);
+module.exports = mongoose.model('Durante_Vida', durante_vidaShema);
