@@ -13,7 +13,7 @@ var Schema = mongoose.Schema;
 // }
 
 var empleadoShema = new Schema({
-    nombreEmpresa: { type: String, required: [false, 'El Nombre de la Empresa es requerido'] },
+    nombreEmpresa: { type: String, required: [false, 'El Nombre de la Empresa es requerido'] }, 
     fechaing: { type: String, required: [false, 'La Fecha es Requerida'] },
     fecha: { type: String, required: [false, 'La Fecha es Requerida'] },
     cedula: { type: Number, unique: true, required: [false, 'Cedula es nesesaria'] },

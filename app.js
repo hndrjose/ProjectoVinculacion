@@ -47,7 +47,7 @@ var empleadoRuta = require('./routes/empleado');
 var ayerhoyRuta = require('./routes/ayerhoy');
 var durantevidaRuta = require('./routes/durantevida');
 var ultimomesesRuta = require('./routes/ultimomeses');
-var empresaRuta = require('./routes/empresa');
+
 var otoscopiaRuta = require('./routes/otoscopia');
 var audiogramaRuta = require('./routes/audiograma');
 var recomendacionesRuta = require('./routes/recomendaciones');
