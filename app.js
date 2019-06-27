@@ -47,10 +47,10 @@ var empleadoRuta = require('./routes/empleado');
 var ayerhoyRuta = require('./routes/ayerhoy');
 var durantevidaRuta = require('./routes/durantevida');
 var ultimomesesRuta = require('./routes/ultimomeses');
-
-var otoscopiaRuta = require('./routes/otoscopia');
-var audiogramaRuta = require('./routes/audiograma');
-var recomendacionesRuta = require('./routes/recomendaciones');
+var empresaRuta = require('./routes/empresa');
+// var otoscopiaRuta = require('./routes/otoscopia');
+// var audiogramaRuta = require('./routes/audiograma');
+// var recomendacionesRuta = require('./routes/recomendaciones');
 
 
 // Conexion a la base de datos
@@ -63,9 +63,9 @@ mongoose.connection.openUri('mongodb://hndrjose:audiometria1@ds131747.mlab.com:3
 
 
 // Rutas
-app.use('/recomendaciones', recomendacionesRuta);
-app.use('/audiograma', audiogramaRuta);
-app.use('/otoscopia', otoscopiaRuta);
+// app.use('/recomendaciones', recomendacionesRuta);
+// app.use('/audiograma', audiogramaRuta);
+// app.use('/otoscopia', otoscopiaRuta);
 app.use('/empresa', empresaRuta);
 app.use('/ultimomeses', ultimomesesRuta);
 app.use('/durantevida', durantevidaRuta);
